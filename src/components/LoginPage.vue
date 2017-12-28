@@ -6,7 +6,7 @@
         <input type="text" name="account" v-model="username" class="username"placeholder="account">
         <input type="password" name="password" v-model="password" class="password" placeholder="Password">
         <div class="register">没有账号？立即注册</div>
-        <button class="pointer" v-on:click="login">登录</button>
+        <button class="pointer" v-on:click="login()">登录</button>
       </div>
     </div>
     <div class="container" v-show="!showLogin">
@@ -22,6 +22,7 @@
 </template>
 <script>
   import {setCookie, getCookie } from '../api/cookie.js'
+  import homePage from '@/components/homePage'
   export default{
     data(){
       return{
@@ -42,29 +43,31 @@
     },
     methods:{
       login(){
-          if( this.username == '' || this.password == '' ){
-            alert('请输入用户名或者密码');
-          }else{
-              let params = {
-                'username' : this.username,
-                'password' : this.password
-              }
-              this.$http.post('http://localhost/vueapi/index.php/Home/user/login', params).then((res)=>{
-                console.log(res, 'res')
-                if( res.data == -1){
-                    alert('该用户不存在')
-                }else if( res.data == 0 ){
-                    alert( '密码输入错误' );
-                }else{
-                  alert('登录成功');
-                  setCookie('username', this.name, 1000*60)
-                  setTimeout(function(){
-                    console.log('跳转页面');
-//                    this.$router.push('/home')
-                  }.bind(this),1000)
-                }
-            })
-          }
+        this.$router.push({name : 'homePage'});
+        return;
+//          if( this.username == '' || this.password == '' ){
+//            alert('请输入用户名或者密码');
+//          }else{
+//              let params = {
+//                'account' : this.username,
+//                'password' : this.password
+//              }
+//              this.$http.post('http://localhost:8090/Dev/user/login.do', params).then((res)=>{
+//                console.log(params, 'res')
+//                if( res.data == -1){
+//                    alert('该用户不存在')
+//                }else if( res.data == 0 ){
+//                    alert( '密码输入错误' );
+//                }else{
+//                  alert('登录成功');
+//                  setCookie('username', this.name, 1000*60)
+//                  setTimeout(function(){
+//                    console.log('跳转页面');
+////                    this.$router.push('/homePage')
+//                  }.bind(this),1000)
+//                }
+//            })
+//          }
       }
     },
 
