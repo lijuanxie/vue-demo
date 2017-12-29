@@ -4,6 +4,12 @@
   <!--</div>-->
   <div>
     <div class="facility-index">
+      <div class="top-search">
+        <div class="add-btn pointer" v-on:click="showModal = true">
+          新增设备
+        </div>
+      </div>
+
       <ul class="list-head sys-flex sys-flex-center">
         <li class="wd80">状态</li>
         <li class="sys-flex-one">设备</li>
@@ -21,7 +27,7 @@
           <li class="wd80">{{item.category_title}}</li>
           <li class="wd150">{{item.specs}}</li>
           <li class="wd150">{{item.org_title}}</li>
-          <li class="wd80 pointer" @click="showModal = true">编辑</li>
+          <li class="wd80 pointer" @click="showModal = true" :id="item.id">编辑</li>
         </ul>
       </div>
     </div>
@@ -50,7 +56,7 @@
             'page': 1,
             'offset':0
           },
-          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetList?access_token=dev34c74553398c9fba670c9b0186106e5'
+          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetList?access_token=devab92dd5e6ae80c6a5d1f37345c42da0'
           this.$http.jsonp(url, params, {method : 'POST'}).then((data)=>{
             if( data && data.body.code == 200 ){
                 this.assetList = data.body.data;
@@ -72,4 +78,18 @@
 </script>
 <style lang="less" scoped>
   @import "../assets/style/homepage";
+
+  .top-search{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    .add-btn{
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-color: #fda84d;
+      color: #fff;
+    }
+  }
 </style>
