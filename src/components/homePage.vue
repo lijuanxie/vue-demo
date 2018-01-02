@@ -1,7 +1,4 @@
 <template>
-  <!--<div>-->
-    <!--登录主页成功-->
-  <!--</div>-->
   <div>
     <div class="facility-index">
       <div class="top-search">
@@ -51,12 +48,12 @@
     methods:{
       getList(){
         let params = {
-            'access_token' : 'dev36b3d540ab5506b4d8ab2b8b3cd0eff',
+            'access_token' : 'devbd522da321736b5f4168765057c9dfc',
             'count': 20,
             'page': 1,
             'offset':0
           },
-          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetList?access_token=devab92dd5e6ae80c6a5d1f37345c42da0'
+          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetList?access_token=devbd522da321736b5f4168765057c9dfc'
           this.$http.jsonp(url, params, {method : 'POST'}).then((data)=>{
             if( data && data.body.code == 200 ){
                 this.assetList = data.body.data;

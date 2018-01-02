@@ -22,7 +22,6 @@
 </template>
 <script>
   import {setCookie, getCookie } from '../api/cookie.js'
-  import homePage from '@/components/homePage'
   export default{
     data(){
       return{
@@ -43,7 +42,7 @@
     },
     methods:{
       login(){
-        this.$router.push({name : 'homePage'});
+        this.$router.push({name : 'index'});
         return;
 //          if( this.username == '' || this.password == '' ){
 //            alert('请输入用户名或者密码');

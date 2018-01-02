@@ -3,6 +3,10 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import LoginPage from '@/components/LoginPage'
 import homePage from '@/components/homePage'
+import manage from '@/components/manage'
+import index from '@/components/index'
+import sort from '@/components/sort'
+import assetReturn from '@/components/return'
 Vue.use(Router)
 
 export default new Router({
@@ -12,15 +16,40 @@ export default new Router({
     //   name: 'HelloWorld',
     //   component: HelloWorld
     // }
-    // {
-    //   path: '/',
-    //   name: 'LoginPage',
-    //   component: LoginPage
-    // },
     {
       path: '/',
-      name: 'homePage',
-      component: homePage
-    }
+      name: 'LoginPage',
+      component: LoginPage
+    },
+    {
+      path: 'index',
+      name: 'index',
+      component: index,
+      children : [
+        {
+          path: 'homePage',
+          name: 'homePage',
+          component: homePage
+        },
+        {
+          path: 'manage',
+          name: 'manage',
+          component: manage
+        },
+        {
+          path: 'sort',
+          name: 'sort',
+          component: sort
+        },
+        {
+          path: 'return',
+          name: 'return',
+          component: assetReturn
+        }
+      ]
+    },
+
+
+
   ]
 })

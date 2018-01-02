@@ -52,7 +52,7 @@
         let params = {
 
         },
-        url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/categoryList?access_token=devab92dd5e6ae80c6a5d1f37345c42da0';
+        url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/categoryList?access_token=devbd522da321736b5f4168765057c9dfc';
         this.$http.jsonp(url, {}, {method : 'POST'}).then((data)=>{
           if( data && data.body.code == 200 ){
             this.sortList = data.body.data;
@@ -71,7 +71,7 @@
             category_id : this.sort,
             title : this.title
         },
-          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetCreate?access_token=devab92dd5e6ae80c6a5d1f37345c42da0';
+          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetCreate?access_token=devbd522da321736b5f4168765057c9dfc';
         this.$http.jsonp(url, {params : {category_id : this.sort,title : this.title}}, {method : 'POST'}).then((data)=>{
           console.log( data );
           if( data.body.code != 200 ){
