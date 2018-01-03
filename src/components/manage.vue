@@ -24,11 +24,11 @@
           <li class="wd80">{{item.category_title}}</li>
           <li class="wd150">{{item.specs}}</li>
           <li class="wd150">{{item.org_title}}</li>
-          <li class="wd80 pointer" @click="showModal = true" :id="item.id">编辑</li>
+          <li class="wd80 pointer" @click="showModal = true" v-on:click="editAsset( item.id, item )">编辑</li>
         </ul>
       </div>
     </div>
-    <v-modal v-if="showModal" v-on:closeModal="closeModal"></v-modal>
+    <v-modal v-if="showModal" :form="form" v-on:closeModal="closeModal"></v-modal>
   </div>
 </template>
 <script>
@@ -40,6 +40,11 @@
       return{
         showModal : false,
         assetList : [],
+        edit_id : '',
+        form : {
+          id : '',
+          info : ''
+        }
       }
     },
     components: {
@@ -61,6 +66,12 @@
             alert('请求出错');
           }
         })
+      },
+      editAsset( id,item ){
+        this.form = {
+          id : id,
+          info : item
+        }
       },
       closeModal( state){
         this.showModal = state;
