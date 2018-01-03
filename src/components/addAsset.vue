@@ -9,7 +9,7 @@
         <div class="sys-flex">
           <div class="list-item mr20">
             <label>设备名称：</label>
-            <input class="wd200" placeholder="设备名称" v-model="title">
+            <input class="wd200 mt0" placeholder="设备名称" v-model="title">
           </div>
           <div class="list-item">
             <label>设备类别：</label>
