@@ -51,11 +51,11 @@
         this.$emit('closeModal', false)
       },
       getSort(){
-        console.log(this.form, 888);
+        console.log(this.form, 999);
         let params = {
 
         },
-        url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/categoryList?access_token=devbd522da321736b5f4168765057c9dfc';
+        url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/categoryList?access_token=dev4e83f9b8f5039b98213f76f2e60c1c4';
         this.$http.jsonp(url, {}, {method : 'POST'}).then((data)=>{
           if( data && data.body.code == 200 ){
             this.sortList = data.body.data;
@@ -66,7 +66,7 @@
       },
 
       submit(){
-        console.log(this.form, 999);
+
         if( !this.form.info.title || !this.form.info.bar_code || !this.form.info.category_id ){
           alert('请填写名称、条码、分类');
           return;
@@ -74,9 +74,9 @@
         let url ='';
         this.asset_id = this.form.info.id ? this.form.info.id : '';
         if( this.asset_id ){
-          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetUpdate?access_token=devbd522da321736b5f4168765057c9dfc';
+          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetUpdate?access_token=dev4e83f9b8f5039b98213f76f2e60c1c4';
         }else{
-          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetCreate?access_token=devbd522da321736b5f4168765057c9dfc';
+          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetCreate?access_token=dev4e83f9b8f5039b98213f76f2e60c1c4';
         }
 
         this.$http.jsonp(url, {params : {category_id : this.form.info.category_id,title : this.form.info.title,id: this.asset_id}}, {method : 'POST'}).then((data)=>{

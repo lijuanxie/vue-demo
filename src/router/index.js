@@ -26,12 +26,12 @@ export default new Router({
       component: index,
       children : [
         {
-          path: 'index/manage',
+          path: 'manage',
           name: 'manage',
           component: manage
         },
         {
-          path: 'index/sort',
+          path: 'sort',
           name: 'sort',
           component: sort
         },
