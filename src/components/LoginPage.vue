@@ -42,7 +42,7 @@
     },
     methods:{
       login(){
-        this.$router.push({name : 'index'});
+        this.$router.push({name : 'manage'});
         return;
 //          if( this.username == '' || this.password == '' ){
 //            alert('请输入用户名或者密码');

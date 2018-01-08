@@ -71,7 +71,8 @@
         category_id : '-1',
         status : '-1',
         type : 'title',
-        key : ''
+        key : '',
+        access_token : 'devecddc9a69644108acedbbd14294c384'
       }
     },
     components: {
@@ -80,7 +81,7 @@
     methods:{
       getList(){
         let params = {
-            'access_token' : 'dev4e83f9b8f5039b98213f76f2e60c1c4',
+            'access_token' : this.access_token,
             'count': 20,
             'page': 1,
             'offset':0,
@@ -116,11 +117,10 @@
       },
 
       getSort(){
-        console.log(this.form, 999);
         let params = {
 
           },
-          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/categoryList?access_token=dev4e83f9b8f5039b98213f76f2e60c1c4';
+          url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/categoryList?access_token=' + this.access_token;
         this.$http.jsonp(url, {}, {method : 'POST'}).then((data)=>{
           if( data && data.body.code == 200 ){
             this.sortList = data.body.data;
