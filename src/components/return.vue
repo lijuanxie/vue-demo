@@ -24,10 +24,10 @@
           <span class="icon-search" style="position: absolute;right: 25px;top:10px;font-size: 12px;">搜索</span>
         </div>
 
-        <div class="add-btn pointer mr20" v-on:click="editReturn('','')">
+        <div class="add-btn pointer mr20" v-on:click="editReturn('return')">
           新增退还
         </div>
-        <div class="add-btn pointer" v-on:click="editUse('','')">
+        <div class="add-btn pointer" v-on:click="editReturn('use')">
           新增领用
         </div>
       </div>
@@ -54,10 +54,12 @@
         </ul>
       </div>
     </div>
+    <v-modal v-if="showModal" :form="form" v-on:closeModal="closeModal"></v-modal>
   </div>
 </template>
 <script>
   import $ from 'jquery'
+  import modal from './editReturn'
   export default {
     data(){
       return{
@@ -68,8 +70,17 @@
         status : '-1',
         type : 'title',
         key : '',
-        access_token : 'devecddc9a69644108acedbbd14294c384',
+        showModal : false,
+        form : {
+          id : '',
+          info : ''
+        },
+        access_token : 'deva82a05ca90386ba1b23ccb12c68d00b',
       }
+    },
+
+    components : {
+      'v-modal' : modal
     },
 
     methods : {
@@ -86,7 +97,10 @@
       },
 
       getList(){
-        let url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/CorAssetUseRecord?access_token=' + this.access_token;
+        let url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/CorAssetUseRecord?access_token=' + this.access_token,
+            params = {
+
+            }
         this.$http.jsonp( url, {params : {}}).then( (data)=> {
           console.log( data, 333);
           if( data && data.body.code == 200 ){
@@ -95,6 +109,15 @@
             alert( data.body.msg )
           }
         })
+      },
+
+      editReturn(){
+        this.showModal = true;
+      },
+
+      closeModal(){
+        this.showModal = false;
+        this.getList();
       }
     },
 
@@ -134,6 +157,10 @@
     margin-top: 0;
     box-sizing: border-box;
     border-radius: 2px;
+    outline: none;
+    &:focus{
+      outline: none;
+    }
   }
   span{
     position: absolute;
