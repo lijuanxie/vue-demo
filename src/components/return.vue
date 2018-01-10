@@ -111,8 +111,14 @@
         })
       },
 
-      editReturn(){
+      editReturn(type){
         this.showModal = true;
+        this.form = {
+          info : {
+            type : type
+          }
+        }
+
       },
 
       closeModal(){
