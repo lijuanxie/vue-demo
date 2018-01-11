@@ -10,9 +10,28 @@
 
         </div>
         <div class="list-body">
-
+          <div class="list-wrap">
+            <ul class="list-head sys-flex sys-flex-center">
+              <input class="" type="checkbox" v-on:click="checkedAll()"/>
+              <li class="sys-flex-one">设备</li>
+              <li class="wd150">设备条码</li>
+              <li class="wd80">分类</li>
+              <li class="wd150">规格型号</li>
+              <li class="wd80">所属部门</li>
+            </ul>
+            <div class="list-body">
+              <ul class="sys-flex sys-flex-center" v-for="item in assList">
+                <input class="" type="checkbox" v-bind:value="item.id" v-bind:checked="item.checked" v-model="item.checked" v-on:click="checkOne(item)"/>
+                <li class="sys-flex-one">{{item.title}}</li>
+                <li class="wd150">{{item.bar_code}}</li>
+                <li class="wd80">{{item.category_title}}</li>
+                <li class="wd150">{{item.specs}}</li>
+                <li class="wd80">{{item.org_title}}</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
+        </div>
       <div class="modal-footer">
         <span class="cancel-btn btn mr20" v-on:click="close()">取消</span>
         <span class="save-btn btn" v-on:click="submit()">保存</span>
@@ -28,6 +47,8 @@
 
     data(){
       return{
+        checkAll : false,
+        assList : []
 
       }
     },
@@ -37,9 +58,44 @@
         this.$emit('modalClose', false)
       },
 
+      getList(){
+        let url = 'http://sys-team.cloud.hoge.cn/dev/sys/asset/assetList',
+            params = {
+              access_token : 'devcbc709ff4f988706a43cf7c7e521c5c'
+            }
+        this.$http.jsonp( url, {params : params}, ).then( (data)=>{
+          if( data && data.body.code == 200 ){
+            this.assList = data.body.data;
+            console.log(this.assList);
+          }else{
+            alert('请求出错');
+          }
+        })
+      },
+
+      checkOne( data ){
+        data.checked = !data.checked;
+      },
+
+      checkedAll(){
+
+        this.checkAll = !this.checkAll;
+        let checkall = this.checkAll;
+        this.assList.forEach(function( v ){
+          v.checked = checkall;
+          console.log(v);
+        })
+      },
+
+
+
       submit(){
 
       }
+    },
+
+    created(){
+      this.getList();
     }
 
 
@@ -73,7 +129,8 @@
       }
       .modal-body{
         padding: 20px;
-        /*border:1px solid #e6e6e6;*/
+        height: calc(~'100% - 150px');
+        overflow-y: scroll;
         input{
           width: 150px;
           height: 30px;
@@ -82,6 +139,12 @@
           padding-left: 10px;
           border-radius: 2px;
           box-shadow: none;
+        }
+        .list-wrap{
+          input{
+            margin-top: 0;
+            width: 50px;
+          }
         }
       }
       .modal-footer{

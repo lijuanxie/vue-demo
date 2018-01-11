@@ -72,7 +72,7 @@
         status : '-1',
         type : 'title',
         key : '',
-        access_token : 'devecddc9a69644108acedbbd14294c384'
+        access_token : 'devcbc709ff4f988706a43cf7c7e521c5c'
       }
     },
     components: {
